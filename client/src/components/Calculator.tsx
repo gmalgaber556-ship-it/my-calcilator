@@ -169,7 +169,7 @@ export default function Calculator() {
     <div className="w-screen h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-0 m-0">
       <div className="w-full h-full flex flex-col bg-white">
         {/* Display Area */}
-        <div className="bg-gradient-to-br from-blue-600 to-blue-700 flex-shrink-0 p-6 text-right flex flex-col justify-end min-h-[15%]">
+        <div className="bg-gradient-to-br from-blue-600 to-blue-700 flex-shrink-0 p-4 text-right flex flex-col justify-end min-h-[12%]">
           <div className="text-blue-200 text-lg font-medium mb-2 h-8">
             {state.operation && state.previousValue !== null
               ? `${state.previousValue} ${state.operation}`
@@ -183,7 +183,7 @@ export default function Calculator() {
         </div>
 
         {/* Buttons Area */}
-        <div className="flex-1 p-4 space-y-2 overflow-hidden bg-white flex flex-col">
+        <div className="flex-1 p-3 space-y-1 overflow-hidden bg-white flex flex-col">
           {/* Row 1: Special Functions */}
           <div className="grid grid-cols-4 gap-2 flex-shrink-0">
             <button

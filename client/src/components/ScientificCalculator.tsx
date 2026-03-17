@@ -178,7 +178,7 @@ export default function ScientificCalculator() {
   return (
     <div className="w-full h-full flex flex-col bg-white">
       {/* Display Area */}
-      <div className="bg-gradient-to-br from-blue-600 to-blue-700 flex-shrink-0 p-6 text-right flex flex-col justify-end min-h-[15%]">
+      <div className="bg-gradient-to-br from-blue-600 to-blue-700 flex-shrink-0 p-4 text-right flex flex-col justify-end min-h-[12%]">
         <div className="text-blue-200 text-lg font-medium mb-2 h-8">
           {state.angleMode === 'rad' ? 'راديان' : 'درجات'}
         </div>
@@ -190,7 +190,7 @@ export default function ScientificCalculator() {
       </div>
 
       {/* Buttons Area */}
-      <div className="flex-1 p-4 space-y-2 overflow-hidden bg-white flex flex-col">
+      <div className="flex-1 p-3 space-y-1 overflow-hidden bg-white flex flex-col">
         {/* Row 1: Mode and Clear */}
         <div className="grid grid-cols-4 gap-2 flex-shrink-0">
           <button
