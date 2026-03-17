@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
-import { Delete, RotateCcw } from 'lucide-react';
+import { Delete } from 'lucide-react';
 
 /**
- * Modern Elegant Calculator Component - Full Screen
+ * Modern Elegant Calculator Component - Full Screen Vertical
  * Design: Clean, professional interface with smooth interactions
  * Features: Basic operations, percentage, square root, power, decimal precision
  */
@@ -166,190 +166,187 @@ export default function Calculator() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-0">
-      <div className="w-full h-full flex flex-col">
-        {/* Main Calculator Card - Full Screen */}
-        <div className="bg-white flex-1 flex flex-col overflow-hidden">
-          {/* Display Area - Large */}
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 flex-1 flex flex-col justify-end p-12 text-right">
-            <div className="text-blue-200 text-2xl font-medium mb-6 h-12">
-              {state.operation && state.previousValue !== null
-                ? `${state.previousValue} ${state.operation}`
-                : ''}
-            </div>
-            <div className="text-white text-9xl font-bold break-words overflow-hidden leading-tight">
-              {state.display.length > 12
-                ? parseFloat(state.display).toExponential(6)
-                : state.display}
-            </div>
+    <div className="w-screen h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-0 m-0">
+      <div className="w-full h-full flex flex-col bg-white">
+        {/* Display Area */}
+        <div className="bg-gradient-to-br from-blue-600 to-blue-700 flex-shrink-0 p-6 text-right flex flex-col justify-end min-h-[15%]">
+          <div className="text-blue-200 text-lg font-medium mb-2 h-8">
+            {state.operation && state.previousValue !== null
+              ? `${state.previousValue} ${state.operation}`
+              : ''}
           </div>
+          <div className="text-white text-5xl font-bold break-words overflow-hidden leading-tight">
+            {state.display.length > 12
+              ? parseFloat(state.display).toExponential(6)
+              : state.display}
+          </div>
+        </div>
 
-          {/* Buttons Area - Large Grid */}
-          <div className="flex-1 p-8 space-y-6 overflow-auto bg-white">
-            {/* Row 1: Special Functions */}
-            <div className="grid grid-cols-4 gap-4 h-20">
-              <button
-                onClick={handleClear}
-                className="col-span-2 bg-red-500 hover:bg-red-600 text-white font-bold text-3xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                مسح
-              </button>
-              <button
-                onClick={handleBackspace}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-3xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl flex items-center justify-center"
-              >
-                <Delete size={40} />
-              </button>
-              <button
-                onClick={() => handleSpecialOperation('negate')}
-                className="bg-slate-400 hover:bg-slate-500 text-white font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                ±
-              </button>
-            </div>
-
-            {/* Row 2: Advanced Operations */}
-            <div className="grid grid-cols-4 gap-4 h-20">
-              <button
-                onClick={() => handleSpecialOperation('sqrt')}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                √
-              </button>
-              <button
-                onClick={() => handleSpecialOperation('square')}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                x²
-              </button>
-              <button
-                onClick={() => handleSpecialOperation('reciprocal')}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                1/x
-              </button>
-              <button
-                onClick={() => handleSpecialOperation('percent')}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                %
-              </button>
-            </div>
-
-            {/* Row 3: Numbers 7-9 and Division */}
-            <div className="grid grid-cols-4 gap-4 h-20">
-              <button
-                onClick={() => handleNumber('7')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                7
-              </button>
-              <button
-                onClick={() => handleNumber('8')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                8
-              </button>
-              <button
-                onClick={() => handleNumber('9')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                9
-              </button>
-              <button
-                onClick={() => handleOperation('/')}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-5xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                ÷
-              </button>
-            </div>
-
-            {/* Row 4: Numbers 4-6 and Multiplication */}
-            <div className="grid grid-cols-4 gap-4 h-20">
-              <button
-                onClick={() => handleNumber('4')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                4
-              </button>
-              <button
-                onClick={() => handleNumber('5')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                5
-              </button>
-              <button
-                onClick={() => handleNumber('6')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                6
-              </button>
-              <button
-                onClick={() => handleOperation('*')}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-5xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                ×
-              </button>
-            </div>
-
-            {/* Row 5: Numbers 1-3 and Subtraction */}
-            <div className="grid grid-cols-4 gap-4 h-20">
-              <button
-                onClick={() => handleNumber('1')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                1
-              </button>
-              <button
-                onClick={() => handleNumber('2')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                2
-              </button>
-              <button
-                onClick={() => handleNumber('3')}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                3
-              </button>
-              <button
-                onClick={() => handleOperation('-')}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-5xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                −
-              </button>
-            </div>
-
-            {/* Row 6: Zero, Decimal and Addition */}
-            <div className="grid grid-cols-4 gap-4 h-20">
-              <button
-                onClick={() => handleNumber('0')}
-                className="col-span-2 bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                0
-              </button>
-              <button
-                onClick={handleDecimal}
-                className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-4xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                .
-              </button>
-              <button
-                onClick={() => handleOperation('+')}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-5xl py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
-              >
-                +
-              </button>
-            </div>
-
-            {/* Equals Button - Large */}
+        {/* Buttons Area */}
+        <div className="flex-1 p-4 space-y-2 overflow-hidden bg-white flex flex-col">
+          {/* Row 1: Special Functions */}
+          <div className="grid grid-cols-4 gap-2 flex-shrink-0">
             <button
-              onClick={handleEquals}
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-5xl py-6 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl h-20"
+              onClick={handleClear}
+              className="col-span-2 bg-red-500 hover:bg-red-600 text-white font-bold text-lg py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
             >
-              =
+              مسح
+            </button>
+            <button
+              onClick={handleBackspace}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl flex items-center justify-center"
+            >
+              <Delete size={24} />
+            </button>
+            <button
+              onClick={() => handleSpecialOperation('negate')}
+              className="bg-slate-400 hover:bg-slate-500 text-white font-bold text-2xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              ±
             </button>
           </div>
+
+          {/* Row 2: Advanced Operations */}
+          <div className="grid grid-cols-4 gap-2 flex-shrink-0">
+            <button
+              onClick={() => handleSpecialOperation('sqrt')}
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              √
+            </button>
+            <button
+              onClick={() => handleSpecialOperation('square')}
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              x²
+            </button>
+            <button
+              onClick={() => handleSpecialOperation('reciprocal')}
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              1/x
+            </button>
+            <button
+              onClick={() => handleSpecialOperation('percent')}
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              %
+            </button>
+          </div>
+
+          {/* Row 3: Numbers 7-9 and Division */}
+          <div className="grid grid-cols-4 gap-2 flex-shrink-0">
+            <button
+              onClick={() => handleNumber('7')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              7
+            </button>
+            <button
+              onClick={() => handleNumber('8')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              8
+            </button>
+            <button
+              onClick={() => handleNumber('9')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              9
+            </button>
+            <button
+              onClick={() => handleOperation('/')}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-2xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              ÷
+            </button>
+          </div>
+
+          {/* Row 4: Numbers 4-6 and Multiplication */}
+          <div className="grid grid-cols-4 gap-2 flex-shrink-0">
+            <button
+              onClick={() => handleNumber('4')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              4
+            </button>
+            <button
+              onClick={() => handleNumber('5')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              5
+            </button>
+            <button
+              onClick={() => handleNumber('6')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              6
+            </button>
+            <button
+              onClick={() => handleOperation('*')}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-2xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              ×
+            </button>
+          </div>
+
+          {/* Row 5: Numbers 1-3 and Subtraction */}
+          <div className="grid grid-cols-4 gap-2 flex-shrink-0">
+            <button
+              onClick={() => handleNumber('1')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              1
+            </button>
+            <button
+              onClick={() => handleNumber('2')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              2
+            </button>
+            <button
+              onClick={() => handleNumber('3')}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              3
+            </button>
+            <button
+              onClick={() => handleOperation('-')}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-2xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              −
+            </button>
+          </div>
+
+          {/* Row 6: Zero, Decimal and Addition */}
+          <div className="grid grid-cols-4 gap-2 flex-shrink-0">
+            <button
+              onClick={() => handleNumber('0')}
+              className="col-span-2 bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              0
+            </button>
+            <button
+              onClick={handleDecimal}
+              className="bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              .
+            </button>
+            <button
+              onClick={() => handleOperation('+')}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-2xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              +
+            </button>
+          </div>
+
+          {/* Equals Button */}
+          <button
+            onClick={handleEquals}
+            className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-2xl py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg hover:shadow-xl flex-shrink-0"
+          >
+            =
+          </button>
         </div>
       </div>
     </div>
