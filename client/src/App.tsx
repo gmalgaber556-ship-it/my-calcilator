@@ -80,11 +80,11 @@ function App() {
           <Toaster />
           <div className="w-screen h-screen flex flex-col bg-white">
             {/* Main Content */}
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden flex flex-col">
               {tabs.map((tab) => (
                 <div
                   key={tab.id}
-                  className={`w-full h-full ${activeTab === tab.id ? 'block' : 'hidden'}`}
+                  className={`flex-1 w-full overflow-hidden flex flex-col ${activeTab === tab.id ? 'flex' : 'hidden'}`}
                 >
                   {tab.component}
                 </div>
@@ -92,8 +92,8 @@ function App() {
             </div>
 
             {/* Bottom Navigation Bar */}
-            <div className="flex-shrink-0 border-t-2 border-slate-200 bg-white">
-              <div className="flex justify-around items-center h-20">
+            <div className="flex-shrink-0 border-t-2 border-slate-200 bg-white h-20">
+              <div className="flex justify-around items-center h-full">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
