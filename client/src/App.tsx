@@ -92,15 +92,15 @@ function App() {
             </div>
 
             {/* Bottom Navigation Bar */}
-            <div className="flex-shrink-0 border-t-2 border-slate-200 bg-white h-20">
+            <div className="flex-shrink-0 border-t border-slate-200 bg-white h-14">
               <div className="flex justify-around items-center h-full">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex-1 h-full flex flex-col items-center justify-center gap-1 transition-all duration-200 ${
+                    className={`flex-1 h-full flex flex-col items-center justify-center gap-0.5 transition-all duration-200 ${
                       activeTab === tab.id
-                        ? 'bg-blue-50 border-t-4 border-blue-500 text-blue-600'
+                        ? 'bg-blue-50 border-t-2 border-blue-500 text-blue-600'
                         : 'text-slate-600 hover:bg-slate-50'
                     }`}
                   >
