@@ -109,13 +109,13 @@ function App() {
 
             {/* Bottom Navigation Bar */}
             {navVisible && (
-              <div className="flex-shrink-0 border-t border-slate-200 bg-white h-14">
-                <div className="flex justify-around items-center h-full overflow-x-auto">
+              <div className="flex-shrink-0 border-t border-slate-200 bg-white h-16">
+                <div className="flex items-center h-full overflow-x-auto">
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex-shrink-0 h-full flex flex-col items-center justify-center gap-0.5 transition-all duration-200 px-3 ${
+                      className={`flex-shrink-0 h-full flex flex-col items-center justify-center gap-1 transition-all duration-200 px-4 min-w-max ${
                         activeTab === tab.id
                           ? 'bg-blue-50 border-t-2 border-blue-500 text-blue-600'
                           : 'text-slate-600 hover:bg-slate-50'

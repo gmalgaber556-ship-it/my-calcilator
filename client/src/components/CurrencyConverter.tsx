@@ -5,6 +5,11 @@ interface ExchangeRates {
   [key: string]: number;
 }
 
+interface CurrencyInfo {
+  code: string;
+  name: string;
+}
+
 export default function CurrencyConverter() {
   const [amount, setAmount] = useState<string>('1');
   const [fromCurrency, setFromCurrency] = useState<string>('USD');
@@ -14,11 +19,35 @@ export default function CurrencyConverter() {
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
   const [error, setError] = useState<string>('');
 
-  const currencies = [
-    'USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD',
-    'MXN', 'SGD', 'HKD', 'NOK', 'KRW', 'TRY', 'RUB', 'INR', 'BRL', 'ZAR',
-    'AED', 'SAR', 'EGP', 'KWD', 'QAR'
-  ];
+  const currenciesMap: Record<string, string> = {
+    'USD': 'دولار أمريكي',
+    'EUR': 'يورو',
+    'GBP': 'جنيه إسترليني',
+    'JPY': 'ين ياباني',
+    'AUD': 'دولار أسترالي',
+    'CAD': 'دولار كندي',
+    'CHF': 'فرنك سويسري',
+    'CNY': 'يوان صيني',
+    'SEK': 'كرونة سويدية',
+    'NZD': 'دولار نيوزيلندي',
+    'MXN': 'بيزو مكسيكي',
+    'SGD': 'دولار سنغافوري',
+    'HKD': 'دولار هونج كونج',
+    'NOK': 'كرونة نرويجية',
+    'KRW': 'وون كوري',
+    'TRY': 'ليرة تركية',
+    'RUB': 'روبل روسي',
+    'INR': 'روبية هندية',
+    'BRL': 'ريال برازيلي',
+    'ZAR': 'راند جنوب أفريقي',
+    'AED': 'درهم إماراتي',
+    'SAR': 'ريال سعودي',
+    'EGP': 'جنيه مصري',
+    'KWD': 'دينار كويتي',
+    'QAR': 'ريال قطري'
+  };
+
+  const currencies = Object.keys(currenciesMap);
 
   const fetchExchangeRates = async () => {
     setLoading(true);
@@ -83,7 +112,7 @@ export default function CurrencyConverter() {
             >
               {currencies.map((curr) => (
                 <option key={curr} value={curr}>
-                  {curr}
+                  {curr} - {currenciesMap[curr]}
                 </option>
               ))}
             </select>
@@ -118,7 +147,7 @@ export default function CurrencyConverter() {
             >
               {currencies.map((curr) => (
                 <option key={curr} value={curr}>
-                  {curr}
+                  {curr} - {currenciesMap[curr]}
                 </option>
               ))}
             </select>

@@ -40,10 +40,10 @@ const conversions: Record<string, { label: string; conversions: Conversion[] }> 
   temperature: {
     label: 'درجة الحرارة',
     conversions: [
-      { name: 'سيليزيوس إلى فهرنهايت', fromUnit: '°م', toUnit: '°ف', factor: 0 },
-      { name: 'فهرنهايت إلى سيليزيوس', fromUnit: '°ف', toUnit: '°م', factor: 0 },
-      { name: 'سيليزيوس إلى كيلفن', fromUnit: '°م', toUnit: 'ك', factor: 0 },
-      { name: 'كيلفن إلى سيليزيوس', fromUnit: 'ك', toUnit: '°م', factor: 0 },
+      { name: 'سيليزيوس إلى فهرنهايت', fromUnit: '°C', toUnit: '°F', factor: 0 },
+      { name: 'فهرنهايت إلى سيليزيوس', fromUnit: '°F', toUnit: '°C', factor: 0 },
+      { name: 'سيليزيوس إلى كيلفن', fromUnit: '°C', toUnit: 'K', factor: 0 },
+      { name: 'كيلفن إلى سيليزيوس', fromUnit: 'K', toUnit: '°C', factor: 0 },
     ],
   },
   volume: {
@@ -148,13 +148,13 @@ export default function UnitConverter() {
 
     // Special handling for temperature
     if (selectedCategory === 'temperature') {
-      if (conversion.fromUnit === '°م' && conversion.toUnit === '°ف') {
+      if (conversion.fromUnit === '°C' && conversion.toUnit === '°F') {
         result = (num * 9) / 5 + 32;
-      } else if (conversion.fromUnit === '°ف' && conversion.toUnit === '°م') {
+      } else if (conversion.fromUnit === '°F' && conversion.toUnit === '°C') {
         result = ((num - 32) * 5) / 9;
-      } else if (conversion.fromUnit === '°م' && conversion.toUnit === 'ك') {
+      } else if (conversion.fromUnit === '°C' && conversion.toUnit === 'K') {
         result = num + 273.15;
-      } else if (conversion.fromUnit === 'ك' && conversion.toUnit === '°م') {
+      } else if (conversion.fromUnit === 'K' && conversion.toUnit === '°C') {
         result = num - 273.15;
       } else {
         result = num * conversion.factor;
