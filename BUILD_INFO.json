@@ -1,0 +1,11 @@
+{
+  "app_name": "آلة حاسبة متقدمة",
+  "package_name": "com.calculator.app",
+  "version": "1.0",
+  "status": "READY_FOR_APK_BUILD",
+  "next_steps": [
+    "Use Expo EAS Build (recommended)",
+    "Use GitHub Actions",
+    "Use Android Studio locally"
+  ]
+}
