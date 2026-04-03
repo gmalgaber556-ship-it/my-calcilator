@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pnpm install && pnpm run build",
+  "outputDirectory": "dist",
+  "devCommand": "pnpm run dev",
+  "env": {
+    "VITE_APP_TITLE": "Advanced Calculator",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663128592014/gxtNHqpldODhIeTv.png"
+  }
+}
