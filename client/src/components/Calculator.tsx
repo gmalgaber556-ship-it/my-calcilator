@@ -166,10 +166,9 @@ export default function Calculator() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-0 m-0">
-      <div className="w-full h-full flex flex-col bg-white">
+    <div className="w-screen h-screen flex flex-col" style={{ background: 'linear-gradient(to bottom right, #f8fafc, #f1f5f9)' }}>
         {/* Display Area */}
-        <div className="bg-gradient-to-br from-blue-600 to-blue-700 flex-shrink-0 p-4 text-right flex flex-col justify-end min-h-[12%]">
+            <div style={{ background: 'linear-gradient(to bottom right, #2563eb, #1d4ed8)' }} className="flex-shrink-0 p-4 text-right flex flex-col justify-end min-h-[12%]">
           <div className="text-blue-200 text-lg font-medium mb-2 h-8">
             {state.operation && state.previousValue !== null
               ? `${state.previousValue} ${state.operation}`
@@ -348,7 +347,6 @@ export default function Calculator() {
             =
           </button>
         </div>
-      </div>
     </div>
   );
 }
